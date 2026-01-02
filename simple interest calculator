@@ -1,0 +1,49 @@
+# servlet code
+package com.simpleinterest;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+@WebServlet("/calculate")
+public class InterestServlet extends
+HttpServlet{
+	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		Double principle=Double.parseDouble(req.getParameter("principle"));
+		Double rate=Double.parseDouble(req.getParameter("rate"));
+		Double time=Double.parseDouble(req.getParameter("time"));
+		Double SI=(principle*rate*time)/100;
+		PrintWriter out=res.getWriter();
+		out.println("<html><body>");
+		out.println("<h2>Simple interest result</h2>");
+		out.println("Principle:"+principle+"<br>");
+		out.println("rate:"+rate+" <br>");
+		out.println("Time:"+time+"<br>");
+		out.println("<b>simpleinterest="+SI+"</b>");
+		out.println("</body></html>");
+	}
+}
+
+#HTML code
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SimpleInterest</title>
+</head>
+<body>
+<h2>SimpleInterest</h2>
+<form action="calculate" method="post">
+Enter Principle:
+<input type="text" name="principle"><br><br>
+Enter Rate:
+<input type="text" name="rate"><br><br>
+Enter Time:
+<input type="text" name="time"><br><br>
+<input type="submit" name="Calculate">
+</form>
+</body>
+</html>
