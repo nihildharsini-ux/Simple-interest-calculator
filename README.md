@@ -1,3 +1,5 @@
+Simple interest calculator
+
 Objective:
 To calculate Simple Interest using a servlet without database support.
 
